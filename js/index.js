@@ -29,6 +29,9 @@ $(function () {
                     $(selector+" .coin-count").text("Count : "+response[token]["count"]);
                     $(selector+" .coin-total-price").text("Total : $"+response[token]["total_price"]);
                 });
+                
+                if(response[token]["symbol"] == "LEAD")
+                         document.title = 'LEAD : '+response[token]["price"];
 
             });
         }else{
