@@ -6,6 +6,8 @@
 function curl_post($url){
         $curl_handle=curl_init();
         curl_setopt($curl_handle,CURLOPT_URL,$url);
+        curl_setopt($curl_handle, CURLOPT_SSL_VERIFYHOST, 0);
+        curl_setopt($curl_handle, CURLOPT_SSL_VERIFYPEER, 0);
         curl_setopt($curl_handle,CURLOPT_CONNECTTIMEOUT,3);
         curl_setopt($curl_handle,CURLOPT_RETURNTRANSFER,1);
         $buffer = curl_exec($curl_handle);
