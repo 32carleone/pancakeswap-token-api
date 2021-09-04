@@ -73,7 +73,13 @@ function curl_post($url){
             $tokens[$token_key]["updated_at"] = date("d-m-Y H:i:s", (int)($token_response["updated_at"]/1000));
             $tokens[$token_key]["name"] = $token_response["data"]["name"];
             $tokens[$token_key]["symbol"] = $token_response["data"]["symbol"];
-            $tokens[$token_key]["price"] = number_format((double)$token_response["data"]["price"],4,".","");
+           
+            if($token_response["data"]["price"] < 1){
+                $tokens[$token_key]["price"] = number_format((double)$token_response["data"]["price"],9,".","");
+            }else{
+                $tokens[$token_key]["price"] = number_format((double)$token_response["data"]["price"],4,".","");
+            }
+            
             $tokens[$token_key]["total_price"] = number_format(( $tokens[$token_key]["price"]*(double)$tokens[$token_key]["count"]),2);
             $tokens[$token_key]["token"] = $token_key;
         }
